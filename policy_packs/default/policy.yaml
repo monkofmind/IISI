@@ -1,0 +1,60 @@
+# IISI Default Policy Pack
+# MindTech OS / MG Universe
+# Version: 0.1.0
+#
+# Policy packs define domain-specific thresholds and constraints.
+# Rules are evaluated top-down. First match wins.
+# IISI is non-blocking — HALT means pause + return agency, never force-stop.
+
+name: default
+version: "0.1.0"
+domain: general
+description: >
+  General-purpose IISI policy. Suitable for most professional
+  decision-support contexts.
+
+rules:
+
+  - id: critical_instability_halt
+    description: "Critical distortion overrides original intent — return agency"
+    when:
+      distortion_level: CRITICAL
+    action: HALT
+    reason: "Critical instability detected. Human agency must be restored before proceeding."
+
+  - id: composite_high_risk
+    description: "Multiple active distortions with low stability index"
+    when:
+      stability_index_below: 0.40
+      distortion_level_min: ACTIVE
+    action: STABILIZE
+    reason: "Compound distortion reducing decision clarity."
+
+  - id: single_distortion_active
+    description: "Single active distortion"
+    when:
+      distortion_level: ACTIVE
+    action: REFLECT
+    reason: "Distortion signal detected. Reflection prompt applied."
+
+  - id: latent_observe
+    description: "Latent signals — observe only"
+    when:
+      distortion_level: LATENT
+    action: ALLOW
+    reason: "Latent distortion. No intervention required."
+
+  - id: clean_intent
+    description: "No distortion — proceed"
+    when:
+      distortion_level: NONE
+    action: ALLOW
+    reason: "Intent appears stable."
+
+# Excluded states — IISI never classifies these as distortion
+exclusions:
+  - grief
+  - moral_conviction
+  - informed_disagreement
+  - cultural_values
+  - religious_belief

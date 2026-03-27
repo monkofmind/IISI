@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "iisi"
+version = "0.1.0"
+description = "Internal Integrity Stabilization Infrastructure — MindTech OS"
+readme = "README.md"
+license = { text = "Proprietary — see LICENSE" }
+authors = [
+    { name = "MindTech OS / MG Universe", email = "founder@mindtechos.com" }
+]
+keywords = [
+    "decision-integrity", "AI-governance", "intent-stabilization",
+    "cognitive-infrastructure", "mindtech", "IISI"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Intended Audience :: Legal Industry",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.9"
+dependencies = []   # Zero external dependencies for core IISI
+
+[project.optional-dependencies]
+api = ["fastapi>=0.100.0", "uvicorn>=0.22.0"]
+dev = ["pytest>=7.0", "pytest-cov", "black", "ruff"]
+
+[project.urls]
+Homepage = "https://mindtechos.com"
+Repository = "https://github.com/mindtechos/iisi"
+Documentation = "https://docs.mindtechos.com/iisi"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["iisi*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
+[tool.black]
+line-length = 88
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 88

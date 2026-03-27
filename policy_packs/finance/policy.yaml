@@ -1,0 +1,61 @@
+# IISI Finance Policy Pack
+# Elevated sensitivity for financial decision contexts.
+# Incentive and temporal distortions weighted higher.
+
+name: finance
+version: "0.1.0"
+domain: financial_services
+description: >
+  For use in trading, investment, M&A, and financial governance contexts.
+  Incentive and temporal distortions are treated with elevated sensitivity.
+  Suitable for ADGM/DIFC regulated environments.
+
+rules:
+
+  - id: critical_halt
+    when:
+      distortion_level: CRITICAL
+    action: HALT
+    reason: "Critical instability in financial context. Mandatory pause."
+
+  - id: incentive_dominant_finance
+    description: "Reward-seeking overriding fiduciary judgment"
+    when:
+      distortion_class: incentive
+      distortion_level_min: DOMINANT
+    action: STABILIZE
+    reason: "Incentive distortion at dominant level in financial context — elevated risk."
+
+  - id: temporal_active_finance
+    description: "Short-termism in financial decision"
+    when:
+      distortion_class: temporal
+      distortion_level_min: ACTIVE
+    action: STABILIZE
+    reason: "Temporal distortion detected. Long-horizon projection required."
+
+  - id: composite_finance_risk
+    when:
+      stability_index_below: 0.50
+    action: STABILIZE
+    reason: "Stability below finance threshold (0.50)."
+
+  - id: default_reflect
+    when:
+      distortion_level_min: ACTIVE
+    action: REFLECT
+
+  - id: allow_stable
+    when:
+      distortion_level: NONE
+    action: ALLOW
+
+thresholds:
+  stability_index_minimum: 0.50    # Higher bar than default (0.40)
+  incentive_sensitivity: 1.5       # Multiplier on incentive detection
+  temporal_sensitivity: 1.5        # Multiplier on temporal detection
+
+compliance_notes:
+  - "Designed for ADGM / DIFC regulatory environment"
+  - "Aligned with UAE AI Governance Framework principles"
+  - "Audit trail generated for every session — required for compliance"
